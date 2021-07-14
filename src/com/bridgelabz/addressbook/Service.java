@@ -8,7 +8,6 @@ public class Service {
     static Scanner scanner = new Scanner(System.in);
     ArrayList<Person> personList = new ArrayList<>();
     private Map<String, ArrayList<Person>> AddressBooks = new HashMap<>();
-
     /**
      * Asking user enter the details of the person and adding multiple persons from console."
      */
@@ -51,7 +50,6 @@ public class Service {
             System.out.println("New book created and added Contact Added Successfully");
         }
     }
-
     /**
      * editing the existing of a person using their first name.
      */
@@ -103,7 +101,6 @@ public class Service {
             }
         }
     }
-
     /**
      * deleting a person using person's name
      *
@@ -135,6 +132,18 @@ public class Service {
             } else {
                 System.out.println("You can Add this Person");
                 break;
+            }
+        }
+    }
+    public void searchPersonInACity(String city)
+    {
+        System.out.println("following are the persons who belongs to :"+city);
+        for (int i = 0; i < personList.size(); i++)
+        {
+            if (personList.get(i).getCity().equals(city))
+            {
+                Person person = personList.get(i);
+                System.out.println(person.getFirstName());
             }
         }
     }
