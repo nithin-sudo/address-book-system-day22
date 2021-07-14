@@ -7,7 +7,7 @@ public class Service
     static Scanner scanner = new Scanner(System.in);
     ArrayList<Person> personList = new ArrayList<>();
     /**
-     * Asking user enter the details of the person.
+     * Asking user enter the details of the person and adding multiple persons from console."
      */
     public void addNewContact()
     {
