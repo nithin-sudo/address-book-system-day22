@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 public class AddressBookMain
 {
+    static Service service = new Service();
     public static void main(String[] args)
     {
-        Service service = new Service();
         boolean isExit = false;
         while (!isExit)
         {
