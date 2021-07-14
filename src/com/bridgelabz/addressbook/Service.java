@@ -90,6 +90,19 @@ public class Service
             }
         }
     }
+
+    /**
+     * deleting a person using person's name
+     * @param name
+     */
+    public void deleteContact(String name) {
+        for (int i = 0; i < personList.size(); i++) {
+            if (personList.get(i).getFirstName().equals(name)) {
+                Person person = personList.get(i);
+                personList.remove(person);
+            }
+        }
+    }
         /**
          * displaying the list
          */
