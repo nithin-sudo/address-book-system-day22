@@ -4,17 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Service
-{
+public class Service {
     static Scanner scanner = new Scanner(System.in);
     ArrayList<Person> personList = new ArrayList<>();
     private Map<String, ArrayList<Person>> AddressBooks = new HashMap<>();
+
     /**
      * Asking user enter the details of the person and adding multiple persons from console."
      */
-    public void addNewContact()
-    {
-        Person person =new Person();
+    public void addNewContact() {
+        Person person = new Person();
         System.out.println("Enter First name:");
         person.setFirstName(scanner.next());
 
@@ -40,18 +39,15 @@ public class Service
         person.setPhoneNumber(scanner.nextLong());
 
         System.out.println("Enter Book name to which you have to add contact");
-        String bookName  = scanner.next();
-        if(AddressBooks.containsKey(bookName))
-        {
+        String bookName = scanner.next();
+        if (AddressBooks.containsKey(bookName)) {
             ArrayList<Person> contactList = AddressBooks.get(bookName);
             contactList.add(person);
-            AddressBooks.put(bookName,contactList);
+            AddressBooks.put(bookName, contactList);
             System.out.println("New Contact Added Successfully");
-        }
-        else
-        {
+        } else {
             personList.add(person);
-            AddressBooks.put(bookName,personList);
+            AddressBooks.put(bookName, personList);
             System.out.println("New book created and added Contact Added Successfully");
         }
     }
@@ -110,6 +106,7 @@ public class Service
 
     /**
      * deleting a person using person's name
+     *
      * @param name
      */
     public void deleteContact(String name) {
@@ -120,15 +117,25 @@ public class Service
             }
         }
     }
-        /**
-         * displaying the list
-         */
-    public void displayList()
-    {
-        for (Person person :personList)
-        {
+
+    /**
+     * displaying the list
+     */
+    public void displayList() {
+        for (Person person : personList) {
             System.out.print(person);
         }
     }
 
+    public void duplicateCheck(String firstName) {
+        for (int i = 0; i < personList.size(); i++) {
+            String contactName = personList.get(i).getFirstName();
+            if (firstName.equals(contactName)) {
+                System.out.println("This Person is Already Present");
+            } else {
+                System.out.println("You can Add this Person");
+                break;
+            }
+        }
+    }
 }

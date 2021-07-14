@@ -10,7 +10,7 @@ public class AddressBookMain
         while (!isExit)
         {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("\nEnter options 1.Add. 2.edit contact 3.delete contact 4.Display Contact. 5.Exit.");
+            System.out.println("\nEnter options 1.Add. 2.edit contact 3.delete contact 4.Display Contact. 5.duplicate check 6.Exit.");
             int userInput = scanner.nextInt();
             switch (userInput)
             {
@@ -29,6 +29,11 @@ public class AddressBookMain
                     service.displayList();
                     break;
                 case 5:
+                    System.out.println("Enter the Name of the person you wants to check, weather that person is already present:");
+                    String firstName = scanner.next();
+                    service.duplicateCheck(firstName);
+                    break;
+                case 6:
                     isExit = true;
                     break;
                 default:
