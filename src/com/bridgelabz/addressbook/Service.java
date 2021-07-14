@@ -1,11 +1,14 @@
 package com.bridgelabz.addressbook;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Service
 {
     static Scanner scanner = new Scanner(System.in);
     ArrayList<Person> personList = new ArrayList<>();
+    private Map<String, ArrayList<Person>> AddressBooks = new HashMap<>();
     /**
      * Asking user enter the details of the person and adding multiple persons from console."
      */
@@ -36,7 +39,21 @@ public class Service
         System.out.println("Enter Phone:");
         person.setPhoneNumber(scanner.nextLong());
 
-        personList.add(person);
+        System.out.println("Enter Book name to which you have to add contact");
+        String bookName  = scanner.next();
+        if(AddressBooks.containsKey(bookName))
+        {
+            ArrayList<Person> contactList = AddressBooks.get(bookName);
+            contactList.add(person);
+            AddressBooks.put(bookName,contactList);
+            System.out.println("New Contact Added Successfully");
+        }
+        else
+        {
+            personList.add(person);
+            AddressBooks.put(bookName,personList);
+            System.out.println("New book created and added Contact Added Successfully");
+        }
     }
 
     /**
@@ -108,9 +125,9 @@ public class Service
          */
     public void displayList()
     {
-        for (Person iterator :personList)
+        for (Person person :personList)
         {
-            System.out.print(iterator);
+            System.out.print(person);
         }
     }
 
