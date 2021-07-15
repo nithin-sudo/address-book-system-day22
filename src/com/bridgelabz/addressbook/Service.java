@@ -154,15 +154,10 @@ public class Service {
      */
     public void viewPersonInACity(String city)
     {
-        for(String books : addressBooks.keySet())
-        {
-            ArrayList<Person> personArrayList= addressBooks.get(books);
-            for ( Person person : personArrayList)
-            {
-                if(person.getCity().equals(city))
-                {
-                    System.out.println(person);
-                }
+        for (int i = 0; i < personList.size(); i++) {
+            if (personList.get(i).getCity().equals(city)) {
+                Person person = personList.get(i);
+                System.out.println(person);
             }
         }
     }
