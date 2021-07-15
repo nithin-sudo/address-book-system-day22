@@ -1,13 +1,13 @@
 package com.bridgelabz.addressbook;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Service {
     static Scanner scanner = new Scanner(System.in);
     ArrayList<Person> personList = new ArrayList<>();
-    private Map<String, ArrayList<Person>> AddressBooks = new HashMap<>();
+    HashMap<String, ArrayList<Person>> addressBooks = new HashMap<>();
+
     /**
      * Asking user enter the details of the person and adding multiple persons from console."
      */
@@ -39,17 +39,18 @@ public class Service {
 
         System.out.println("Enter Book name to which you have to add contact");
         String bookName = scanner.next();
-        if (AddressBooks.containsKey(bookName)) {
-            ArrayList<Person> contactList = AddressBooks.get(bookName);
+        if (addressBooks.containsKey(bookName)) {
+            ArrayList<Person> contactList = addressBooks.get(bookName);
             contactList.add(person);
-            AddressBooks.put(bookName, contactList);
+            addressBooks.put(bookName, contactList);
             System.out.println("New Contact Added Successfully");
         } else {
             personList.add(person);
-            AddressBooks.put(bookName, personList);
+            addressBooks.put(bookName, personList);
             System.out.println("New book created and added Contact Added Successfully");
         }
     }
+
     /**
      * editing the existing of a person using their first name.
      */
@@ -101,6 +102,7 @@ public class Service {
             }
         }
     }
+
     /**
      * deleting a person using person's name
      *
@@ -135,15 +137,32 @@ public class Service {
             }
         }
     }
-    public void searchPersonInACity(String city)
-    {
-        System.out.println("following are the persons who belongs to :"+city);
-        for (int i = 0; i < personList.size(); i++)
-        {
-            if (personList.get(i).getCity().equals(city))
-            {
+
+    public void searchPersonInACity(String city) {
+        System.out.println("following are the persons who belongs to :" + city);
+        for (int i = 0; i < personList.size(); i++) {
+            if (personList.get(i).getCity().equals(city)) {
                 Person person = personList.get(i);
                 System.out.println(person.getFirstName());
+            }
+        }
+    }
+
+    /**
+     *viewing a person according to the city.
+     * @param city
+     */
+    public void viewPersonInACity(String city)
+    {
+        for(String books : addressBooks.keySet())
+        {
+            ArrayList<Person> personArrayList= addressBooks.get(books);
+            for ( Person person : personArrayList)
+            {
+                if(person.getCity().equals(city))
+                {
+                    System.out.println(person);
+                }
             }
         }
     }
