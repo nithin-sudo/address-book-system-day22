@@ -7,7 +7,6 @@ public class Service {
     static Scanner scanner = new Scanner(System.in);
     ArrayList<Person> personList = new ArrayList<>();
     HashMap<String, ArrayList<Person>> addressBooks = new HashMap<>();
-
     /**
      * Asking user enter the details of the person and adding multiple persons from console."
      */
@@ -126,6 +125,10 @@ public class Service {
         }
     }
 
+    /**
+     * checking the person is already there or not.
+     * @param firstName
+     */
     public void duplicateCheck(String firstName) {
         for (int i = 0; i < personList.size(); i++) {
             String contactName = personList.get(i).getFirstName();
@@ -137,7 +140,10 @@ public class Service {
             }
         }
     }
-
+    /**
+     * searching a person by city.
+     * @param city
+     */
     public void searchPersonInACity(String city) {
         System.out.println("following are the persons who belongs to :" + city);
         for (int i = 0; i < personList.size(); i++) {
@@ -154,11 +160,14 @@ public class Service {
      */
     public void viewPersonInACity(String city)
     {
+        int personCount = 0;
         for (int i = 0; i < personList.size(); i++) {
             if (personList.get(i).getCity().equals(city)) {
                 Person person = personList.get(i);
                 System.out.println(person);
+                personCount++;
             }
         }
+        System.out.println("Number of contact persons are:"+personCount);
     }
 }
