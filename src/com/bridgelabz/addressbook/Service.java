@@ -170,6 +170,5 @@ public class Service {
             addressBooks.get(name).stream().sorted(Comparator.comparing(Person::getFirstName))
                     .collect(Collectors.toList()).forEach(person -> System.out.println(person.toString()));
         });
-
     }
 }
