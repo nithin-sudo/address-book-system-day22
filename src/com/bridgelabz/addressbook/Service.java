@@ -9,6 +9,7 @@ public class Service {
     static Scanner scanner = new Scanner(System.in);
     ArrayList<Person> personList = new ArrayList<>();
     HashMap<String, ArrayList<Person>> addressBooks = new HashMap<>();
+
     /**
      * Asking user enter the details of the person and adding multiple persons from console."
      */
@@ -133,42 +134,57 @@ public class Service {
             System.out.print(person + "\n");
         }
     }
-        /**
-         * searching a person by city.
-         * @param city
-         */
-        public void searchPersonInACity (String city)
-        {
-            System.out.println("following are the persons who belongs to :" + city);
-            for(String bookName : addressBooks.keySet())
-            {
-                addressBooks.get(bookName);
-                personList.stream().filter(value -> value.getCity().equals(city)).map(Person::getFirstName).forEach(System.out::println);
-            }
+
+    /**
+     * searching a person by city.
+     *
+     * @param city
+     */
+    public void searchPersonInACity(String city) {
+        System.out.println("following are the persons who belongs to :" + city);
+        for (String bookName : addressBooks.keySet()) {
+            addressBooks.get(bookName);
+            personList.stream().filter(value -> value.getCity().equals(city)).map(Person::getFirstName).forEach(System.out::println);
         }
-        /**
-         *viewing a person according to the city.
-         * @param city
-         */
-        public void viewPersonInACity (String city)
-        {
-            for(String bookName : addressBooks.keySet())
-            {
-                int countPerson = 0;
-                addressBooks.get(bookName);
-                personList.stream().filter(value -> value.getCity().equals(city)).map(Person::getFirstName).forEach(System.out::println);
-                countPerson++;
-                System.out.println("total persons:"+countPerson);
-            }
+    }
+
+    /**
+     * viewing a person according to the city.
+     *
+     * @param city
+     */
+    public void viewPersonInACity(String city) {
+        for (String bookName : addressBooks.keySet()) {
+            int countPerson = 0;
+            addressBooks.get(bookName);
+            personList.stream().filter(value -> value.getCity().equals(city)).map(Person::getFirstName).forEach(System.out::println);
+            countPerson++;
+            System.out.println("total persons:" + countPerson);
         }
+    }
+
     /**
      * person list will be sorted in a alphabetical order.
-     *
      */
     public void sortByName() {
         addressBooks.keySet().forEach((String name) -> {
-            addressBooks.get(name).stream().sorted(Comparator.comparing(Person::getFirstName))
-                    .collect(Collectors.toList()).forEach(person -> System.out.println(person.toString()));
+            addressBooks.get(name).stream()
+                    .sorted(Comparator.comparing(Person::getFirstName))
+                    .collect(Collectors.toList())
+                    .forEach(person -> System.out.println(person.toString()));
+        });
+    }
+
+    /**
+     * person list will be sorted and displayed with city name of an alphabetical order.
+     */
+
+    public void sortByCity() {
+        addressBooks.keySet().forEach((String key) -> {
+            addressBooks.get(key).stream()
+                    .sorted(Comparator.comparing(Person::getCity))
+                    .collect(Collectors.toList())
+                    .forEach(person -> System.out.println(person.toString()));
         });
     }
 }
