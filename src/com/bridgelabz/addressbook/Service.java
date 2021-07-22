@@ -1,4 +1,9 @@
 package com.bridgelabz.addressbook;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -9,7 +14,8 @@ public class Service {
     static Scanner scanner = new Scanner(System.in);
     ArrayList<Person> personList = new ArrayList<>();
     HashMap<String, ArrayList<Person>> addressBooks = new HashMap<>();
-
+    public enum IOService {CONSOLE_IO, FILE_IO, DB_IO, REST_IO}
+    public static String addressBookFile = "AddressBookFile.txt";
     /**
      * Asking user enter the details of the person and adding multiple persons from console."
      */
@@ -57,6 +63,40 @@ public class Service {
         }
     }
 
+    /**
+     * writing data into a file.
+     */
+
+    public void writeToFile()
+    {
+        StringBuffer addressBuffer = new StringBuffer();
+        personList.forEach(address -> { String addressDataString = address.toString().concat("\n");addressBuffer.append(addressDataString);});
+        try
+        {
+            Files.write(Paths.get(addressBookFile),addressBuffer.toString().getBytes(StandardCharsets.UTF_8));
+            System.out.println("Data successfully written to file.");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * reading data from file and printing to console.
+     */
+    public void readDataFromFile()
+    {
+        try
+        {
+            System.out.println("Reading Data From File :");
+            Files.lines(new File(addressBookFile).toPath()).map(line -> line.trim()).forEach(line -> System.out.println(line));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
     /**
      * editing the existing of a person using their first name.
      */
